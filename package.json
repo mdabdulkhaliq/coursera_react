@@ -4,9 +4,9 @@
   "description": "coursera react",
   "main": "index.html",
   "scripts": {
-	"start": "npm run lite",
+    "start": "npm run lite",
     "test": "echo \"Error: no test specified\" && exit 1",
-	"lite": "lite-server"
+    "lite": "lite-server"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,10 @@
   "homepage": "https://github.com/mdabdulkhaliq/coursera_react#readme",
   "devDependencies": {
     "lite-server": "^2.4.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "react-popper": "^1.3.0",
+    "reactstrap": "^6.5.0"
   }
 }
