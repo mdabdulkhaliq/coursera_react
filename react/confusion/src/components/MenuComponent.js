@@ -15,6 +15,7 @@ class Menu extends Component {
     this.state = {
       selectedDish: null
     };
+    console.log("1. Menu Component Constructor called");
   }
 
   onDishSelect(dish) {
@@ -39,7 +40,17 @@ class Menu extends Component {
     }
   }
 
+  static getDerivedStateFromProps() {
+    console.log("2. Menu Component getDerivedStateFromProps called");
+    return null;
+  }
+
+  componentDidMount() {
+    console.log("4. Menu Component componentDidMount called");
+  }
+
   render() {
+    console.log("3. Menu Component render called");
     const menu = this.props.dishes.map(dish => {
       return (
         <div key={dish.id} className="col-12 col-md-3 m-1">
@@ -50,7 +61,7 @@ class Menu extends Component {
               src={dish.image}
               alt={dish.name}
             />
-            <CardImgOverlay body className="ml-5">
+            <CardImgOverlay className="ml-5">
               <CardTitle>{dish.name}</CardTitle>
             </CardImgOverlay>
           </Card>
