@@ -40,7 +40,6 @@ class DishDetail extends Component {
                 "Nov",
                 "Dec"
               ];
-
               var day = commentDate.getDate();
               var monthIndex = commentDate.getMonth();
               var year = commentDate.getFullYear();
@@ -70,12 +69,14 @@ class DishDetail extends Component {
       comments = null;
     }
     return (
-      <div className="row">
-        <div className="col-12 col-md-5 m-1">
-          {this.renderDish(this.props.dish)}
-        </div>
-        <div className="col-12 col-md-5 m-1">
-          {this.renderComments(comments)}
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-5 m-1">
+            {this.renderDish(this.props.dish)}
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            {this.renderComments(comments)}
+          </div>
         </div>
       </div>
     );
