@@ -12,6 +12,7 @@ import {
 class Menu extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     console.log("1. Menu Component Constructor called");
   }
 

@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
 class DishDetail extends Component {
+  componentDidMount() {
+    console.log("DishDetailComponent componentDidMount called");
+  }
+
+  componentDidUpdate() {
+    console.log("DishDetailComponent componentDidUpdate called");
+  }
+
   renderDish(dish) {
     if (dish != null) {
       return (
@@ -62,6 +70,7 @@ class DishDetail extends Component {
   }
 
   render() {
+    console.log("DishDetailComponent render called");
     var comments;
     if (this.props.dish != null) {
       comments = this.props.dish.comments;
