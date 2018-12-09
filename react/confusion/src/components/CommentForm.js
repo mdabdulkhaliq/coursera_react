@@ -21,12 +21,27 @@ class CommentForm extends Component {
       isModalOpen: false
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleModal() {
     this.setState({
       isModalOpen: !this.state.isModalOpen
     });
+  }
+
+  handleSubmit(values) {
+    this.toggleModal();
+    console.log(this.props.dishId);
+    console.log(values.rating);
+    console.log(values.author);
+    console.log(values.comment);
+    this.props.addCommentToState(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
+    );
   }
 
   render() {
@@ -50,23 +65,23 @@ class CommentForm extends Component {
                     name="rating"
                     className="form-control"
                   >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                   </Control.select>
                 </Col>
               </Row>
               <Row className="form-group">
-                <Label htmlFor="name" md={4}>
+                <Label htmlFor="author" md={4}>
                   Your Name
                 </Label>
                 <Col md={8}>
                   <Control.text
-                    model=".name"
-                    id="name"
-                    name="name"
+                    model=".author"
+                    id="author"
+                    name="author"
                     className="form-control"
                     validators={{
                       required,
@@ -76,7 +91,7 @@ class CommentForm extends Component {
                   />
                   <Errors
                     className="text-danger"
-                    model=".name"
+                    model=".author"
                     show="touched"
                     messages={{
                       required: "Required",

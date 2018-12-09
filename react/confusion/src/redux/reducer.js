@@ -15,3 +15,4 @@ export const Reducer = (state = initialState, action) => {
 };
 
 // Action => Dispatcher => Store => View
+// This is used to manage entire state in a single reducer
