@@ -1,4 +1,5 @@
 import React from "react";
+import CommentForm from "./CommentForm";
 import {
   Card,
   CardImg,
@@ -62,6 +63,7 @@ function RenderComments({ comments }) {
             );
           })}
         </ul>
+        <CommentForm />
       </div>
     );
   } else {
