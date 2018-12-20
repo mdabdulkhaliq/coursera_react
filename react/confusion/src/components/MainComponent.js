@@ -12,6 +12,7 @@ import {
   addCommentActionCreator,
   fetchDishesActionCreator
 } from "../redux/actionCreators";
+import { actions } from "react-redux-form";
 
 //State from redux will be available as properties listed
 const mapStateToProps = state => {
@@ -29,6 +30,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(addCommentActionCreator(dishId, rating, author, comment)),
   fetchDishes: () => {
     dispatch(fetchDishesActionCreator());
+  },
+  resetFeedbackForm: () => {
+    dispatch(actions.reset("feedback"));
   }
 });
 
@@ -83,7 +87,13 @@ class MainComponent extends Component {
             path="/menu"
             component={() => <Menu dishes={this.props.dishes} />}
           />
-          <Route exact path="/contactus" component={Contact} />
+          <Route
+            exact
+            path="/contactus"
+            component={() => (
+              <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+            )}
+          />
           <Route path="/menu/:dishId" component={DishWithId} />
           <Route
             path="/aboutus"
