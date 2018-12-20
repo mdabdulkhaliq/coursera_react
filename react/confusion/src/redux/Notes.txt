@@ -1,13 +1,28 @@
 action will have a type and payload which is the state.
 write actionCreators which will create action objects for us with the type and payload.
+
 create reducer functions that will take state and action object and based on action.type will give us the new state.
+
 to createStore pass combineReducers({reducer1, reducer2, reducer3}) this is from redux
+
 In App.js create a store object
 In App.js enclose everything in <Provider store={store}>
-In MainComponent use withRouter(connect(mapStateToProps,mapDispatchToProps)(MainComponent));
-mapStateToProps will make the state in redux available as props in the js file.
-mapDispatchToProps will allow us dispatch actions to the redux store. These will also be made available as props in the js file.
-Using the dispatch methods available dispatch action objects created via the action creators. 
-This will be listened by the store and the corresponding reducer will work on it and give the updated state.
 
-Lood at redux folder for examples.
+In MainComponent use withRouter(connect(mapStateToProps,mapDispatchToProps)(MainComponent));
+
+mapStateToProps will make the state in redux available as props in the js file.
+mapDispatchToProps will allow us to dispatch actions to the redux store. These dispatch references for various actions will also be made available as props in the js file. Using these references we dispatch an action.
+
+Using the dispatch method available we dispatch action objects created via the action creators. 
+These dispatches of actions will be listened by the store and the corresponding reducer will work on it and give the updated state.
+Look at redux folder for examples.
+
+Action -> Dispatch -> Store/Reducers -> View
+
+Redux middleware like redux thunk will allow us to use actioncreators to return functions that can be called before or after an action is dispatched to the store.
+We can do conditional dispatches, or do multiple dispatch depending on the original dispatch etc.
+can be used to implement Simple Async logic.
+
+Redux Saga.. for complex async logic.
+
+

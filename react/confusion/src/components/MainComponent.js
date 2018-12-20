@@ -8,8 +8,12 @@ import About from "./AboutComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import DishDetail from "./DishdetailComponent";
 import { connect } from "react-redux";
-import { addCommentActionCreator } from "../redux/actionCreators";
+import {
+  addCommentActionCreator,
+  fetchDishesActionCreator
+} from "../redux/actionCreators";
 
+//State from redux will be available as properties listed
 const mapStateToProps = state => {
   return {
     dishes: state.dishes,
@@ -19,9 +23,13 @@ const mapStateToProps = state => {
   };
 };
 
+//We will make dispatchers available as properties to be used by application to invoke a dispatcher
 const mapDispatchToProps = dispatch => ({
   addCommentToState: (dishId, rating, author, comment) =>
-    dispatch(addCommentActionCreator(dishId, rating, author, comment))
+    dispatch(addCommentActionCreator(dishId, rating, author, comment)),
+  fetchDishes: () => {
+    dispatch(fetchDishesActionCreator());
+  }
 });
 
 class MainComponent extends Component {
@@ -29,11 +37,17 @@ class MainComponent extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchDishes();
+  }
+
   render() {
     const HomePage = () => {
       return (
         <Home
-          dish={this.props.dishes.filter(dish => dish.featured)[0]}
+          dish={this.props.dishes.dishes.filter(dish => dish.featured)[0]}
+          isLoading={this.props.dishes.isLoading}
+          errorMessage={this.props.dishes.errorMessage}
           promotion={this.props.promotions.filter(promo => promo.featured)[0]}
           leader={this.props.leaders.filter(leader => leader.featured)[0]}
         />
@@ -45,10 +59,12 @@ class MainComponent extends Component {
       return (
         <DishDetail
           dish={
-            this.props.dishes.filter(
+            this.props.dishes.dishes.filter(
               dish => dish.id === parseInt(match.params.dishId, 10)
             )[0]
           }
+          isLoading={this.props.dishes.isLoading}
+          errorMessage={this.props.dishes.errorMessage}
           comments={this.props.comments.filter(
             comment => comment.dishId === parseInt(match.params.dishId, 10)
           )}

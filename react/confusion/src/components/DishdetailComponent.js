@@ -10,6 +10,7 @@ import {
   BreadcrumbItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import Loading from "./LoadingComponent";
 
 function RenderDish({ dish }) {
   if (dish != null) {
@@ -73,7 +74,23 @@ function RenderComments({ comments, addCommentToState, dishId }) {
 }
 
 const DishDetail = props => {
-  if (props.dish != null) {
+  if (props.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  } else if (props.errorMessage) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{props.errorMessage}</h4>
+        </div>
+      </div>
+    );
+  } else if (props.dish != null) {
     console.log("77: DishId is " + props.dish.id);
     return (
       <div className="container">
